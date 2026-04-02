@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #5c4b3b;
+  letter-spacing: 0.05em;
+}
+
+input,
+select {
+  padding: 10px;
+  border: 1px solid #d6cfc7;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: "Lora", serif;
+  outline: none;
+  background: white;
+}
+
+input:focus,
+select:focus {
+  border-color: #8b7355;
+}
+
+.inlineLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+radio,
+checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #8b7355;
+  cursor: pointer;
+}
+
+.filename {
+  font-size: 12px;
+  color: #6b5b4d;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
