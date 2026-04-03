@@ -8,7 +8,9 @@ export default function SelectField({ field, value, error, onChange }) {
 
   return (
     <div>
-      <label>{field.label}</label>
+      <label>{field.label} {field.required && (
+    <span style={{ color: "#e74c3c", marginLeft: "4px" }}>*</span>
+  )}</label>
       <select
         id={field.name}
         value={value || ""}

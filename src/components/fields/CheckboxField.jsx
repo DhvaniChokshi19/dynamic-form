@@ -10,7 +10,9 @@ export default function CheckboxField({ field, value, error, onChange }) {
           checked={value || false}
           onChange={(e) => onChange(field.name, e.target.checked)}
         />
-        {field.label}
+        {field.label}{field.required && (
+    <span style={{ color: "#e74c3c", marginLeft: "4px" }}>*</span>
+  )}
       </label>
       {error && <p className="error" >{error}</p>}
     </div>

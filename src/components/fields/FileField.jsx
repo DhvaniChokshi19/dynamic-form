@@ -4,7 +4,9 @@ import "./Formfields.css"
 export default function FileField({ field, value, error, onChange }) {
   return (
     <div className="container">
-      <label>{field.label}</label>
+      <label>{field.label}{field.required && (
+    <span style={{ color: "#e74c3c", marginLeft: "4px" }}>*</span>
+  )}</label>
       <input
         id={field.name}
         type="file"

@@ -9,7 +9,9 @@ export default function RadioField({ field, value, error, onChange }) {
   return (
     <div>
       <label style={{ display: "block", marginBottom: "6px" }}>
-        {field.label}
+        {field.label} {field.required && (
+    <span style={{ color: "#e74c3c", marginLeft: "4px" }}>*</span>
+  )}
       </label>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>

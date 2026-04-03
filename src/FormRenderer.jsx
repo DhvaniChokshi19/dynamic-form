@@ -29,7 +29,6 @@ export default function FormRenderer() {
     const errors = validateForm(FORM_CONFIG.fields, state.values);
     if (Object.keys(errors).length > 0) {
       dispatch({ type: "SET_ERRORS", errors });
-      // Scroll to first error
       const firstId = Object.keys(errors)[0];
       document.getElementById(firstId)?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
@@ -69,7 +68,6 @@ return (
  
       <div style={{ minHeight: "100vh", background: "linear-gradient(160deg, #f5f0e8 0%, #ede5d4 100%)", padding: "48px 16px", fontFamily: "'Lora', serif" }}>
  
-        {/* Header */}
         <div style={{ maxWidth: "640px", margin: "0 auto 32px", animation: "slideIn 0.5s ease" }}>
           <div style={{ fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#a8956e", fontFamily: "'DM Mono', monospace", marginBottom: "10px" }}>
             Dynamic Form Engine
@@ -109,7 +107,7 @@ return (
                   onClick={handleSubmit}
                   style={{ flex: "1", minWidth: "160px", padding: "14px 28px", background: "#8b7355", color: "#fefcf8", border: "none", borderRadius: "8px", fontSize: "13px", fontWeight: "600", letterSpacing: "0.1em", textTransform: "uppercase", fontFamily: "'DM Mono', monospace", cursor: "pointer", transition: "all 0.2s ease", boxShadow: "0 3px 12px rgba(139,115,85,0.25)" }}
                 >
-                  Submit Form →
+                  Submit Form 
                 </button>
                 <button
                   className="reset-btn"
@@ -123,7 +121,7 @@ return (
             </div>
           </div>
         ) : (
-          /* Success state */
+        
           <div style={{ maxWidth: "640px", margin: "0 auto", background: "#fefcf8", borderRadius: "16px", border: "1px solid #e0d5c0", boxShadow: "0 8px 40px rgba(100,80,40,0.08)", overflow: "hidden", animation: "fadeIn 0.5s ease" }}>
             <div style={{ height: "4px", background: "linear-gradient(90deg, #27ae60, #52c97a)" }} />
             <div style={{ padding: "clamp(32px, 5vw, 48px)", textAlign: "center" }}>
@@ -132,17 +130,20 @@ return (
                 Form Submitted!
               </h2>
               <p style={{ color: "#7a6a52", marginBottom: "32px", lineHeight: "1.6" }}>
-                Here's a summary of the data captured from the JSON-driven form.
+                Here's a summary of the data captured from the form.
               </p>
  
-              {/* Data summary */}
               <div style={{ background: "#f5f0e8", borderRadius: "10px", padding: "20px", textAlign: "left", marginBottom: "28px" }}>
                 {FORM_CONFIG.fields.filter((f) => isFieldVisible(f, state.values)).map((f) => {
                   const v = state.values[f.name];
-                  const display = f.type === "checkbox" ? (v ? "Yes" : "No") 
-                    : f.type === "file"
-                    ? (v ? v.name : "No file selected") 
-                    : (v || "—");
+                  const display = 
+                 f.type === "checkbox"
+                 ? (v ? "Yes" : "No")
+                 : f.type === "file"
+                 ? (v ? v.name : "No file selected")
+                 : f.type === "password"
+                 ? (v ? "*".repeat(v.length) : "—")
+                 : (v || "—");
                   return (
                     <div key={f.name} style={{ display: "flex", justifyContent: "space-between", gap: "16px", padding: "8px 0", borderBottom: "1px solid #e0d5c0", flexWrap: "wrap" }}>
                       <span style={{ fontSize: "11px", fontFamily: "'DM Mono', monospace", color: "#8b7355", letterSpacing: "0.06em", textTransform: "uppercase" }}>{f.label}</span>
